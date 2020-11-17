@@ -1,6 +1,7 @@
 package com.example.moviemenu.Activities;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.volley.Request;
@@ -22,7 +23,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,17 +62,13 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item) {
-                switch (menuItem.getItemId()) {
-                    case R.id.movie_search:
+
                         if (menuItem == item) {
                             displayInputDialog();
+                        } else if (menuItem != item) {
+                            moveToLiveTv();
                         }
-                        break;
-                    case R.id.home:
-                        System.exit(0);
-                        break;
                 }
-            }
         });
         setSupportActionBar(toolbar);
 
@@ -93,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
         movieRecyclerViewAdapter.notifyDataSetChanged();
     }
 
+    private void moveToLiveTv() {
+        Intent liveTv = new Intent(MainActivity.this, MovieTrailers.class);
+        startActivity(liveTv);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
