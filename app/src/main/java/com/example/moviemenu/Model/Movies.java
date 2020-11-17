@@ -21,6 +21,7 @@ public class Movies implements Serializable {
     private String awards;
     private String tvRated;
     private String movieType;
+    private String BoxOffice;
 
     public Movies(){
     }
@@ -31,6 +32,14 @@ public class Movies implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getBoxOffice() {
+        return BoxOffice;
+    }
+
+    public void setBoxOffice(String boxOffice) {
+        BoxOffice = boxOffice;
     }
 
     public String getDirector() {
