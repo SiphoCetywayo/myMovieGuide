@@ -14,4 +14,6 @@
 -Titanic
 -Action
 
+#The project uses SharedPreferences, on fresh install project will return empty view, on bottomn nav click search button and search any movie of choice from the list above.
+
 
