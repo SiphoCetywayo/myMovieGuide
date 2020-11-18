@@ -59,19 +59,21 @@ public class MainActivity extends AppCompatActivity {
         final MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
 
+        /*bottomNavigationView sets navigation item lister to listen to click events in the bottom navigation widget*/
         bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item) {
 
-                        if (menuItem == item) {
-                            displayInputDialog();
-                        } else if (menuItem != item) {
-                            moveToLiveTv();
-                        }
+                if (menuItem == item) {
+                    displayInputDialog();
+                } else if (menuItem != item) {
+                    moveToLiveTv();
                 }
+            }
         });
         setSupportActionBar(toolbar);
 
+        /*this line instantiates newRequestQue from Volley Library*/
         queue = Volley.newRequestQueue(this);
 
         recyclerView = findViewById(R.id.moviewRecycler);
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         movieRecyclerViewAdapter.notifyDataSetChanged();
     }
 
+    /*Activity switching method from MainActivity to MovieTrailers activity*/
     private void moveToLiveTv() {
         Intent liveTv = new Intent(MainActivity.this, MovieTrailers.class);
         startActivity(liveTv);
@@ -116,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*displayInputDialog contain movie search dialog box functionality*/
     public void displayInputDialog() {
         alertDialogBuilder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dialog_page, null);
@@ -145,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    /*getMovieList gets all the movies from Movie data model also employs JsonObjectRequest to fetch data from omdbapi*/
     public List<Movies> getMoviesList(final String searchTerm) {
         moviesList.clear();
 
@@ -174,7 +178,6 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //Log.d("JsnError" + error.toString());
                 VolleyLog.v("myError" + error.toString());
 
             }

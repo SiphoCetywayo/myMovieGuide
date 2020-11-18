@@ -18,7 +18,7 @@ import com.example.moviemenu.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
+ /*MovieRecyclerViewAdapter class constructed to control recycling views functionality*/
 public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecyclerViewAdapter.ViewHolder> {
     private List<Movies> moviesList;
     Context context;

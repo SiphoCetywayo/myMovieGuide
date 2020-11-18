@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,12 +65,27 @@ public class MovieDetails extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item) {
-                if (menuItem != item) {
-                    moveBacktoHomeActivity();
+                switch (item.getItemId()) {
+                    case R.id.movie_search:
+                        Toast.makeText(MovieDetails.this, "Go to home activity to search movies", Toast.LENGTH_LONG).show();
+                        break;
+
+                    case R.id.home:
+                        moveBacktoHomeActivity();
+                        break;
+
+                    default:
+                        moveToliveTv();
+                        break;
                 }
             }
-    });
-}
+        });
+    }
+    /*moveToliveTv explicit Intent*/
+    private void moveToliveTv() {
+        Intent moveToliveTv = new Intent(getApplicationContext(), MovieTrailers.class);
+        startActivity(moveToliveTv);
+    }
 
     private void moveBacktoHomeActivity() {
         Intent homeInten = new Intent(MovieDetails.this, MainActivity.class);
@@ -130,6 +146,7 @@ public class MovieDetails extends AppCompatActivity {
         requestQueue.add(jsnObj);
     }
 
+    /*uiSup methods instantiate all movies details view widgets*/
     private void uiSetup() {
         mTitle = findViewById(R.id.MovieTitleDt);
         mReleaseDate = findViewById(R.id.releaseIdDT);
